@@ -1,0 +1,234 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background: #6441A5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow-x: hidden;
+}
+
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.movieWrap{
+    display: grid;
+    grid-template-columns: repeat(4,200px);
+    gap: 20px;
+}
+
+img{
+    width: 100%;
+    cursor: pointer;
+}
+.cardStyle{
+    transition: .4s;
+}
+.cardStyle img{
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.cardStyle:hover{
+    transition: .4s;
+    transform: scale(1.05);
+}
+
+.cardStyle h2,p{
+    color: white;
+}
+
+.cardStyle p{
+    font-size: 17px;
+}
+.cardStyle h2{
+    font-size: 22px;
+}
+
+.showInfo{
+    width: 1100px;
+    background-color: rgb(74, 77, 62);
+    height: 650px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+    top: 50px;
+    padding: 20px;
+    position: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 19px 38px, rgba(255, 255, 255, 0.22) 0px 15px 12px;
+    border-radius: 10px;
+    transform: translateY(-1000px);
+    transition: .3s;
+}
+.showInfoText{
+    position: absolute;
+    right: 20px;
+    width: 65%;
+    font-size: 25px;
+    background-color: rgba(255, 255, 255, 0.589);
+    font: 900;
+    color: black;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.blackBack{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 70%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: none;
+    cursor: pointer;
+}
+
+body::-webkit-scrollbar{
+    background-color: gray;
+    width: 10px;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: yellowgreen;
+    border-radius: 5px;
+}
+
+.infoCard{
+    background: #2b5876;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 30%;
+    box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.25) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.25) 0px 12px 13px, rgba(255, 255, 255, 0.25) 0px -3px 5px;
+    padding: 5px;
+}
+
+.infoCard img{
+    cursor: default;
+}
+
+.infoCard h2{
+    color: whitesmoke;
+}
+
+.infoCard p{
+    font-size: 20px;
+}
+
+.navbar{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.search {
+    display: inline-block;
+    position: relative;
+    margin: 30px;
+  }
+  
+  .search input[type="text"] {
+    width: 600px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search button[type="submit"] {
+    background-color: #4e99e9;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .9s ease;
+  }
+  
+  .search button[type="submit"]:hover {
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    background-color: blue;
+  }
+  
+.rightMenu{
+    position: absolute;
+    right: 0;
+    width: 300px;
+    height: 600px;
+    transform: translateX(100%);
+    transition: .4s;
+    background-color: #231b43;
+}
+.rightMenuDef{
+    position: absolute;
+    right: 0;
+    width: 300px;
+    height: 600px;
+    transform: translateX(0);
+    transition: .4s;
+    background-color: #231b43;
+}
+.burgerMenu{
+    position: relative;
+    right: 0;
+}
+.menuBurger{
+    position: absolute;
+    right: -100px;
+    top: -62px;
+}
+
+#burger{
+    font-size: 30px;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.burgerRev{
+    rotate: 90deg;
+    transition: .3s;
+}
+
+.rightLeftBar{
+    margin: 30px;
+    text-align: center;
+}
+.rightLeftBar i{
+    color: whitesmoke;
+    font-size: 35px;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.arrowUp{
+    bottom: 50px;
+    position: fixed;
+    right: 135px;
+    display: none;
+}
+.arrowUp i{
+    color: whitesmoke;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+i:hover{
+    transition: .3s;
+    opacity: 70%;
+}
