@@ -1,6 +1,8 @@
-import { drowMovie } from "./drowMovie.js";
+import { drowMovie, drowInfo } from "./drowMovie.js";
 import { getMovie } from "./getData.js";
-const options = {
+import removeCards from "./removeData.js";
+import { scrollLog } from "./scrollLog.js";
+export const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
@@ -13,61 +15,26 @@ const blackBack = document.getElementById('blackBack')
 const rightMenu = document.getElementById('rightMenu')
 const burgerBtn = document.getElementById('burger')
 const arrowUp = document.getElementById('arrowUp')
-let movieData = await getMovie('https://api.themoviedb.org/3/movie/top_rated', options)
-let movieData1 = await getMovie('https://api.themoviedb.org/3/discover/movie', options)
-let movieData2 = await getMovie('https://api.themoviedb.org/3/movie/upcoming', options)
+const left = document.getElementById('left')
+const right = document.getElementById('right')
+let moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
+let movieData = await getMovie(moveiUrl, options)
 let results = movieData.results
-let results1 = movieData1.results
-let results2 = movieData2.results
-results.forEach(e => {
-    movieWrap.append(drowMovie(e))
-})
-results1.forEach(e => {
-    movieWrap.append(drowMovie(e))
-})
-results2.forEach(e => {
-    movieWrap.append(drowMovie(e))
-})
-movieWrap.childNodes.forEach(e => {
-    e.addEventListener('click', (event) => {
-        e.childNodes.forEach(elem => {
-            if (event.target.dataset.id === elem.dataset.id && event.target.localName === 'img') {
-                results.forEach(img => {
-                    if (+event.target.dataset.id === img.id) {
-                        showInfo.style.backgroundImage = `url(${'https://image.tmdb.org/t/p/original' + img.backdrop_path})`
-                        const txt = document.createElement('p')
-                        txt.classList.add('showInfoText')
-                        txt.textContent = img.overview
-                        showInfo.prepend(txt)
-                    }
-                })
-                results1.forEach(img => {
-                    if (+event.target.dataset.id === img.id) {
-                        showInfo.style.backgroundImage = `url(${'https://image.tmdb.org/t/p/original' + img.backdrop_path})`
-                        const txt = document.createElement('p')
-                        txt.classList.add('showInfoText')
-                        txt.textContent = img.overview
-                        showInfo.prepend(txt)
-                    }
-                })
-                results2.forEach(img => {
-                    if (+event.target.dataset.id === img.id) {
-                        showInfo.style.backgroundImage = `url(${'https://image.tmdb.org/t/p/original' + img.backdrop_path})`
-                        const txt = document.createElement('p')
-                        txt.classList.add('showInfoText')
-                        txt.textContent = img.overview
-                        showInfo.prepend(txt)
-                    }
-                })
-                showInfo.style.transform = 'translateY(0)'
-                blackBack.style.display = 'block'
-                const infoCard = document.createElement('div')
-                infoCard.append(e.firstChild.cloneNode(true), e.firstChild.nextSibling.cloneNode(true), e.firstChild.nextSibling.nextSibling.cloneNode(true))
-                infoCard.classList.add('infoCard')
-                showInfo.append(infoCard)
-            }
-        })
+
+function loopArr(arr) {
+    arr.forEach(e => {
+        movieWrap.append(drowMovie(e))
     })
+}
+
+window.addEventListener('load', loopArr(results))
+
+movieWrap.addEventListener('click', (event) => {
+    if (event.target.localName === 'img') {
+        let cardMovie = results.find(movie => movie.id === +event.target.dataset.id)
+        drowInfo(cardMovie, showInfo)
+    }
+
 })
 
 blackBack.addEventListener('click', () => {
@@ -88,16 +55,33 @@ burgerBtn.addEventListener('click', () => {
 
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
-        arrowUp.style.display = 'block'
+        arrowUp.classList.add('arrowUpActive')
     } else {
-        arrowUp.style.display = 'none'
+        arrowUp.classList.remove('arrowUpActive')
     }
 })
 
-arrowUp.addEventListener('click', () => {
-    window.scroll({
-        top: 0,
-        left:0,
-        behavior: "smooth",
-    })
+arrowUp.addEventListener('click', scrollLog)
+right.addEventListener('click', async () => {
+    let pageNum = +moveiUrl.match(/\d+$/g).join()
+    pageNum++
+    moveiUrl = moveiUrl.split(/\d+$/g)[0] + pageNum
+    movieData = await getMovie(moveiUrl, options)
+    results = movieData.results
+    removeCards([...movieWrap.children])
+    loopArr(results)
+    scrollLog()
 })
+
+left.addEventListener('click', async () => {
+    let pageNum = +moveiUrl.match(/\d+$/g).join()
+    if (pageNum > 1) {
+        pageNum--
+        moveiUrl = moveiUrl.split(/\d+$/g)[0] + pageNum
+        movieData = await getMovie(moveiUrl, options)
+        results = movieData.results
+        removeCards([...movieWrap.children])
+        loopArr(results)
+        scrollLog()
+    }
+}) 
