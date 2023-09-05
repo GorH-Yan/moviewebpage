@@ -1,5 +1,4 @@
 import { getTrailer } from "./getData.js"
-
 export function drowMovie(obj) {
     const card = document.createElement('div')
     const cardImage = document.createElement('img')

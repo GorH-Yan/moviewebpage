@@ -1,5 +1,5 @@
 import { drowMovie, drowInfo } from "./drowMovie.js";
-import { getMovie } from "./getData.js";
+import { getMovie, getSearch } from "./getData.js";
 import removeCards from "./removeData.js";
 import { scrollLog } from "./scrollLog.js";
 export const options = {
@@ -9,10 +9,13 @@ export const options = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzIxNzQ1YTUzNTBkOTA2MDZkY2IyZTEwMmNlZjJkNCIsInN1YiI6IjY0ZWY1YzM2M2E5OTM3MDExY2JkMmMyMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Orvz0zkXEVwmhBZH9yhB5zMWrC4IijM3kKr42KsFb_Y'
     }
 };
+
 const movieWrap = document.getElementById('movieWrap')
 const showInfo = document.getElementById('showInfo')
+const showSearch = document.getElementById('showSearch')
 const blackBack = document.getElementById('blackBack')
 const rightMenu = document.getElementById('rightMenu')
+const inp = document.forms[0]
 const burgerBtn = document.getElementById('burger')
 const arrowUp = document.getElementById('arrowUp')
 const left = document.getElementById('left')
@@ -20,13 +23,11 @@ const right = document.getElementById('right')
 let moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
 let movieData = await getMovie(moveiUrl, options)
 let results = movieData.results
-
 function loopArr(arr) {
     arr.forEach(e => {
         movieWrap.append(drowMovie(e))
     })
 }
-
 window.addEventListener('load', loopArr(results))
 
 movieWrap.addEventListener('click', (event) => {
@@ -36,11 +37,12 @@ movieWrap.addEventListener('click', (event) => {
     }
 
 })
-
 blackBack.addEventListener('click', () => {
-    showInfo.style.transform = 'translateY(-1000px)'
+    showInfo.style.transform = 'translateY(-3000px)'
     blackBack.style.display = 'none'
     showInfo.replaceChildren()
+    showSearch.classList.remove('searchDiv')
+    showSearch.replaceChildren()
 })
 
 burgerBtn.addEventListener('click', () => {
@@ -84,4 +86,11 @@ left.addEventListener('click', async () => {
         loopArr(results)
         scrollLog()
     }
-}) 
+})
+
+inp.addEventListener('submit', (e) => {
+    e.preventDefault()
+    showSearch.classList.add('searchDiv')
+    getSearch(inp[0].value, showSearch)
+    inp.reset()
+})
