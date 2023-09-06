@@ -90,7 +90,9 @@ left.addEventListener('click', async () => {
 
 inp.addEventListener('submit', (e) => {
     e.preventDefault()
-    showSearch.classList.add('searchDiv')
+    if (inp[0].value !== '') {
+        showSearch.classList.add('searchDiv')
+    }
     getSearch(inp[0].value, showSearch)
     inp.reset()
 })

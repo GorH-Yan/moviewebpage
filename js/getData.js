@@ -1,4 +1,4 @@
-import removeCards from "./removeData.js"
+import { drowInfo } from "./drowMovie.js"
 import { options } from "./script.js"
 
 export async function getMovie(URL, options) {
@@ -19,15 +19,23 @@ export async function getTrailer(id) {
 export async function getSearch(title, showSearch) {
     let titleList = await getMovie(`https://api.themoviedb.org/3/search/movie?query=${title}`, options)
     let titleResult = titleList.results
-    titleResult.forEach(e => {
+    if (titleResult.length === 0) {
         blackBack.style.display = 'block'
-        const searchCard = document.createElement('div')
-        const searchImage = document.createElement('img')
-        const p = document.createElement('p')
-        searchCard.classList.add('showCard')
-        searchImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + e.poster_path)
-        p.textContent = e.title
-        searchCard.append(searchImage, p)
-        showSearch.append(searchCard)
-    })
+        const wrongSearch = document.createElement('h2')
+        wrongSearch.textContent = 'No Movies Found'
+        showSearch.classList.add('wrongSearch')
+        showSearch.append(wrongSearch)
+    } else {
+        titleResult.forEach(e => {
+            blackBack.style.display = 'block'
+            const searchCard = document.createElement('div')
+            const searchImage = document.createElement('img')
+            const p = document.createElement('p')
+            searchCard.classList.add('showCard')
+            searchImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + e.poster_path)
+            p.textContent = e.title
+            searchCard.append(searchImage, p)
+            showSearch.append(searchCard)
+        })
+    }
 }
