@@ -43,13 +43,20 @@ blackBack.addEventListener('click', () => {
     showInfo.replaceChildren()
     showSearch.classList.remove('searchDiv')
     showSearch.replaceChildren()
+    if (burgerBtn.classList.contains('burgerRev')){
+        burgerBtn.classList.remove('burgerRev')
+        rightMenu.classList.remove('rightMenuDef')
+    }
 })
 
 burgerBtn.addEventListener('click', () => {
     if (burgerBtn.classList.contains('burgerRev')) {
         burgerBtn.classList.remove('burgerRev')
         rightMenu.classList.remove('rightMenuDef')
+        blackBack.style.display = 'none'
+
     } else {
+        blackBack.style.display = 'block'
         burgerBtn.classList.add('burgerRev')
         rightMenu.classList.add('rightMenuDef')
     }
