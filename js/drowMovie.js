@@ -1,4 +1,5 @@
 import { getTrailer } from "./getData.js"
+const showSearch = document.getElementById('showSearch')
 export function drowMovie(obj) {
     const card = document.createElement('div')
     const cardImage = document.createElement('img')
@@ -49,5 +50,20 @@ export async function drowInfo(obj, showInfo) {
     infoCard.classList.add('infoCard')
     rightInfo.append(txt)
     rightInfo.append(trailer)
+    document.body.style.overflowY = 'hidden'
     showInfo.append(infoCard, rightInfo)
+}
+
+export function drowSearch(obj) {
+    blackBack.style.display = 'block'
+    const searchCard = document.createElement('div')
+    const searchImage = document.createElement('img')
+    const p = document.createElement('p')
+    searchCard.classList.add('showCard')
+    searchImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + obj.poster_path)
+    p.textContent = obj.title
+    searchCard.append(searchImage, p)
+    showSearch.append(searchCard)
+    document.body.style.overflowY = 'hidden'
+    return searchCard
 }

@@ -2,6 +2,7 @@ import { drowMovie, drowInfo } from "./drowMovie.js";
 import { getMovie, getSearch } from "./getData.js";
 import removeCards from "./removeData.js";
 import { scrollLog } from "./scrollLog.js";
+
 export const options = {
     method: 'GET',
     headers: {
@@ -35,7 +36,6 @@ movieWrap.addEventListener('click', (event) => {
         let cardMovie = results.find(movie => movie.id === +event.target.dataset.id)
         drowInfo(cardMovie, showInfo)
     }
-
 })
 blackBack.addEventListener('click', () => {
     showInfo.style.transform = 'translateY(-3000px)'
@@ -47,6 +47,7 @@ blackBack.addEventListener('click', () => {
         burgerBtn.classList.remove('burgerRev')
         rightMenu.classList.remove('rightMenuDef')
     }
+    document.body.style.overflowY = 'auto'  
 })
 
 burgerBtn.addEventListener('click', () => {
@@ -71,6 +72,7 @@ window.addEventListener('scroll', () => {
 })
 
 arrowUp.addEventListener('click', scrollLog)
+
 right.addEventListener('click', async () => {
     let pageNum = +moveiUrl.match(/\d+$/g).join()
     pageNum++
@@ -98,8 +100,8 @@ left.addEventListener('click', async () => {
 inp.addEventListener('submit', (e) => {
     e.preventDefault()
     if (inp[0].value !== '') {
-        showSearch.classList.add('searchDiv')
+        showSearch.classList.add('searchDiv')        
+        getSearch(inp[0].value, showSearch)
     }
-    getSearch(inp[0].value, showSearch)
     inp.reset()
 })

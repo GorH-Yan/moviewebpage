@@ -1,4 +1,4 @@
-import { drowInfo } from "./drowMovie.js"
+import { drowSearch } from "./drowMovie.js"
 import { options } from "./script.js"
 
 export async function getMovie(URL, options) {
@@ -25,17 +25,10 @@ export async function getSearch(title, showSearch) {
         wrongSearch.textContent = 'No Movies Found'
         showSearch.classList.add('wrongSearch')
         showSearch.append(wrongSearch)
+        document.body.style.overflowY = 'hidden'
     } else {
         titleResult.forEach(e => {
-            blackBack.style.display = 'block'
-            const searchCard = document.createElement('div')
-            const searchImage = document.createElement('img')
-            const p = document.createElement('p')
-            searchCard.classList.add('showCard')
-            searchImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + e.poster_path)
-            p.textContent = e.title
-            searchCard.append(searchImage, p)
-            showSearch.append(searchCard)
+            drowSearch(e)
         })
     }
 }

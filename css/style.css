@@ -189,10 +189,6 @@ body::-webkit-scrollbar-thumb{
     background-color: #231b43;
     z-index: 99999;
 }
-.burgerMenu{
-}
-.menuBurger{
-}
 
 #burger{
     font-size: 30px;
@@ -259,7 +255,8 @@ i:hover{
     background-color: #052546;
     height: 80vh;
     width: 50%;
-    right: 25%;
+    left: 50%;
+    transform: translateX(-50%);
     top: 80px;
     z-index: 999;
     display: flex;
@@ -314,6 +311,9 @@ i:hover{
     .nav-content{
         padding-right: 30px;
     }
+    .searchDiv{
+        width: 80%;
+    }
 }
 @media screen and (max-width: 768px){
         .movieWrap{
@@ -339,15 +339,16 @@ i:hover{
             gap: 30px;
           }
           .showInfo{
-            width: 50%;
+            width: 80%;
             height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-          }
+            overflow: auto;
+          } 
         .infoCard{
             width: 100%;
-        }
+        } 
         
         .rightInfo{
             width: 100%;
@@ -362,17 +363,17 @@ i:hover{
         .arrowUp{
             right: 45px;
         }
-
+        .showInfo::-webkit-scrollbar{
+            background-color: gray;
+            width: 10px;
+            border-radius: 5px;
+        }
+        
+        .showInfo::-webkit-scrollbar-thumb{
+            background-color: yellowgreen;
+            border-radius: 5px;
+        }
+        .searchDiv{
+            width: 80%;
+        }
 }
-
-/* @media screen and (max-width: 468px) {
-    .movieWrap{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        gap: 20px;
-        padding: 0 30px;
-    }
-    .nav-content{
-        padding-right: 30px;
-    }
-} */
