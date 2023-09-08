@@ -1,5 +1,8 @@
 import { getTrailer } from "./getData.js"
+import removeCards from "./removeData.js"
+import { results } from "./script.js"
 const showSearch = document.getElementById('showSearch')
+const movieWrap = document.getElementById('movieWrap')
 export function drowMovie(obj) {
     const card = document.createElement('div')
     const cardImage = document.createElement('img')
@@ -66,4 +69,26 @@ export function drowSearch(obj) {
     showSearch.append(searchCard)
     document.body.style.overflowY = 'hidden'
     return searchCard
+}
+export function drowRightMenu(obj) {
+    const getRightMenu = document.getElementById('rightMenu')
+    const ul = document.createElement('ul')
+    const li = document.createElement('li')
+    li.dataset.id = obj.id
+    li.textContent = obj.name
+    li.classList.add('rightMenuli')
+    ul.append(li)
+    getRightMenu.append(ul)
+    document.body.style.overflowY = 'hidden'
+    li.addEventListener('click', (event) => {
+        removeCards([...movieWrap.children])
+        results.forEach(e => {
+            e.genre_ids.forEach(id => {
+                if (+event.target.dataset.id === id) {
+                    movieWrap.append(drowMovie(e))
+                }
+            })
+        })
+    })
+    return getRightMenu
 }

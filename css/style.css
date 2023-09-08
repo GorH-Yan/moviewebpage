@@ -301,6 +301,38 @@ i:hover{
     top: 40%;
     position: relative;
 }
+
+.rightMenu {
+overflow-x: hidden;
+}
+.rightMenuli{
+    border-bottom: 1px solid black;
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+    margin-bottom: 5px;
+    transition: .3s;
+    color: white;
+    padding-left: 15px;
+}
+.rightMenuli:hover{
+    opacity: 70%;
+    transition: .3s;
+    box-shadow: rgba(97, 94, 94, 0.35) 0px -50px 36px -28px inset;
+}
+
+.rightMenu::-webkit-scrollbar{
+    background-color: gray;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.rightMenu::-webkit-scrollbar-thumb{
+    background-color: yellowgreen;
+    border-radius: 5px;
+}
+
+
 @media screen and (max-width: 1024px) {
     .movieWrap{
         display: grid;
@@ -340,11 +372,11 @@ i:hover{
           }
           .showInfo{
             width: 80%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow: auto;
+
           } 
         .infoCard{
             width: 100%;

@@ -1,5 +1,5 @@
-import { drowMovie, drowInfo } from "./drowMovie.js";
-import { getMovie, getSearch } from "./getData.js";
+import { drowMovie, drowInfo, drowRightMenu } from "./drowMovie.js";
+import { getGenre, getMovie, getSearch } from "./getData.js";
 import removeCards from "./removeData.js";
 import { scrollLog } from "./scrollLog.js";
 
@@ -21,9 +21,10 @@ const burgerBtn = document.getElementById('burger')
 const arrowUp = document.getElementById('arrowUp')
 const left = document.getElementById('left')
 const right = document.getElementById('right')
+
 let moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
 let movieData = await getMovie(moveiUrl, options)
-let results = movieData.results
+export let results = movieData.results
 function loopArr(arr) {
     arr.forEach(e => {
         movieWrap.append(drowMovie(e))
@@ -35,6 +36,7 @@ movieWrap.addEventListener('click', (event) => {
     if (event.target.localName === 'img') {
         let cardMovie = results.find(movie => movie.id === +event.target.dataset.id)
         drowInfo(cardMovie, showInfo)
+        arrowUp.classList.remove('arrowUpActive')
     }
 })
 blackBack.addEventListener('click', () => {
@@ -43,11 +45,12 @@ blackBack.addEventListener('click', () => {
     showInfo.replaceChildren()
     showSearch.classList.remove('searchDiv')
     showSearch.replaceChildren()
-    if (burgerBtn.classList.contains('burgerRev')){
+    rightMenu.replaceChildren()
+    if (burgerBtn.classList.contains('burgerRev')) {
         burgerBtn.classList.remove('burgerRev')
         rightMenu.classList.remove('rightMenuDef')
     }
-    document.body.style.overflowY = 'auto'  
+    document.body.style.overflowY = 'auto'
 })
 
 burgerBtn.addEventListener('click', () => {
@@ -55,9 +58,9 @@ burgerBtn.addEventListener('click', () => {
         burgerBtn.classList.remove('burgerRev')
         rightMenu.classList.remove('rightMenuDef')
         blackBack.style.display = 'none'
-
     } else {
         blackBack.style.display = 'block'
+        getGenre()
         burgerBtn.classList.add('burgerRev')
         rightMenu.classList.add('rightMenuDef')
     }
@@ -100,7 +103,7 @@ left.addEventListener('click', async () => {
 inp.addEventListener('submit', (e) => {
     e.preventDefault()
     if (inp[0].value !== '') {
-        showSearch.classList.add('searchDiv')        
+        showSearch.classList.add('searchDiv')
         getSearch(inp[0].value, showSearch)
     }
     inp.reset()

@@ -1,6 +1,5 @@
-import { drowSearch } from "./drowMovie.js"
+import { drowRightMenu, drowSearch } from "./drowMovie.js"
 import { options } from "./script.js"
-
 export async function getMovie(URL, options) {
     let movies = await fetch(URL, options).then(r => r.json())
     return movies
@@ -31,4 +30,12 @@ export async function getSearch(title, showSearch) {
             drowSearch(e)
         })
     }
+}
+
+export async function getGenre() {
+    let genreList = await getMovie('https://api.themoviedb.org/3/genre/movie/list', options)
+    let genreResult = genreList.genres
+    genreResult.forEach(e => {
+        drowRightMenu(e)
+    })
 }
