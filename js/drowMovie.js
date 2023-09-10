@@ -67,7 +67,7 @@ export function drowSearch(obj) {
     searchImage.dataset.id = obj.id
     searchImage.addEventListener('click', (event) => {
         let currentId = event.target.dataset.id
-        window.open(`../about/about.html#${currentId}`, '_blank')
+        window.open(`../about/about.html#${currentId}`, '_self')
     })
     p.textContent = obj.title
     searchCard.append(searchImage, p)
