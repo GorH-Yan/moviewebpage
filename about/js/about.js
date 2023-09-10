@@ -1,5 +1,6 @@
 const pageInfo = document.getElementById('pageInfo')
 const pageTitle = document.getElementById('pageTitle')
+const backIcon = document.getElementById('backIcon')
 let movieId = location.hash.slice(1)
 let movieUrl = `https://api.themoviedb.org/3/movie/${movieId}`
 const options = {
@@ -28,7 +29,7 @@ function drowInfo(obj) {
     const vote = document.createElement('p')
     const star = document.createElement('i')
     star.className = "fa-solid fa-star"
-    star.style.color ='yellow'
+    star.style.color = 'yellow'
     h2.textContent = obj.title
     text.textContent = obj.overview
     genreTitle.textContent = genres
@@ -48,4 +49,7 @@ function drowInfo(obj) {
     return allChild
 }
 pageInfo.append(drowInfo(movie))
-console.log(movie)
+
+backIcon.addEventListener('click', () => {
+    window.open(`./index.html`, '_self')
+})

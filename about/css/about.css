@@ -52,24 +52,42 @@ body{
     font-size: 22px;
     padding-bottom: 20px;
 }
-
+.rightSideCard h3{
+    font-size: 14px;
+}
 .footer{
     display: flex;
     justify-content: space-between;
 }
 
+#backIcon{
+    font-size: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: yellowgreen;
+    transition: .6s;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    top: 50px;
+    left: 10px;
+}
+
+#backIcon:hover{
+    opacity: 60%;
+}
 
 @media screen and (max-width: 768px){
     .allChild{
         flex-direction: column;
         width: 100%;
+        margin-bottom: 30px;
     }
     .leftSideCard{
         width: 70%;
     }
     .rightSideCard{
-        width: 80%;
-        margin-bottom: 20px;
+        width: 90%;
     }
 }
 

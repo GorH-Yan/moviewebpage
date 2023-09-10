@@ -5,9 +5,9 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background: #6441A5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #283c86;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45a247, #283c86);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45a247, #283c86);
     overflow-x: hidden;
 }
 
@@ -150,7 +150,7 @@ body::-webkit-scrollbar-thumb{
   }
   
   .search button[type="submit"] {
-    background-color: #4e99e9;
+    background-color: yellowgreen;
     border: none;
     color: #fff;
     cursor: pointer;
@@ -166,7 +166,7 @@ body::-webkit-scrollbar-thumb{
   .search button[type="submit"]:hover {
     transform: scale(1.1);
     color: rgb(255, 255, 255);
-    background-color: blue;
+    opacity: 60%;
   }
   
 .rightMenu{
@@ -192,7 +192,7 @@ body::-webkit-scrollbar-thumb{
 
 #burger{
     font-size: 30px;
-    color: whitesmoke;
+    color: yellowgreen;
     cursor: pointer;
     transition: .3s;
 }
@@ -333,19 +333,18 @@ overflow-x: hidden;
 }
 
 #icon{
-    width: 7%;
     display: inline-block;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
     text-decoration: none;
-    color: white;
-    transition: .3s;
-    background-color: #4e4376;
+    color: yellowgreen;
+    transition: .6s;
     border-radius: 30px;
     cursor: pointer;
 }
 #icon:hover{
     opacity: 60%;
+    transform: rotateY(180deg);
 }
 
 @media screen and (max-width: 1024px) {

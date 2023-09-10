@@ -130,10 +130,14 @@ const rightMenuBar = document.querySelector('.rightMenu')
 rightMenuBar.addEventListener('click', async (e) => {
     if (e.target.localName === 'li') {
         geners = e.target.dataset.id
+        rightMenu.classList.remove('rightMenuDef')
+        burgerBtn.classList.remove('burgerRev')
+        blackBack.style.display = 'none'
+        document.body.style.overflowY = 'auto'
         if (moveiUrl.includes('with_genres')) {
             moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
             moveiUrl = moveiUrl.split('?').join(`?with_genres=${geners}&`)
-        }else{
+        } else {
             moveiUrl = moveiUrl.split('?').join(`?with_genres=${geners}&`)
         }
         movieData = await getMovie(moveiUrl, options)
