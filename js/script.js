@@ -10,7 +10,7 @@ export const options = {
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMzIxNzQ1YTUzNTBkOTA2MDZkY2IyZTEwMmNlZjJkNCIsInN1YiI6IjY0ZWY1YzM2M2E5OTM3MDExY2JkMmMyMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Orvz0zkXEVwmhBZH9yhB5zMWrC4IijM3kKr42KsFb_Y'
     }
 };
-
+const icon = document.getElementById('icon')
 const movieWrap = document.getElementById('movieWrap')
 const showInfo = document.getElementById('showInfo')
 const showSearch = document.getElementById('showSearch')
@@ -22,14 +22,20 @@ const arrowUp = document.getElementById('arrowUp')
 const left = document.getElementById('left')
 const right = document.getElementById('right')
 
+let geners = false
+
+
 let moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
 let movieData = await getMovie(moveiUrl, options)
+
 export let results = movieData.results
 function loopArr(arr) {
     arr.forEach(e => {
         movieWrap.append(drowMovie(e))
+
     })
 }
+
 window.addEventListener('load', loopArr(results))
 
 movieWrap.addEventListener('click', (event) => {
@@ -85,6 +91,8 @@ right.addEventListener('click', async () => {
     removeCards([...movieWrap.children])
     loopArr(results)
     scrollLog()
+
+
 })
 
 left.addEventListener('click', async () => {
@@ -107,4 +115,30 @@ inp.addEventListener('submit', (e) => {
         getSearch(inp[0].value, showSearch)
     }
     inp.reset()
+})
+
+icon.addEventListener('click', async () => {
+    moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
+    movieData = await getMovie(moveiUrl, options)
+    results = movieData.results
+    removeCards([...movieWrap.children])
+    loopArr(results)
+})
+
+const rightMenuBar = document.querySelector('.rightMenu')
+
+rightMenuBar.addEventListener('click', async (e) => {
+    if (e.target.localName === 'li') {
+        geners = e.target.dataset.id
+        if (moveiUrl.includes('with_genres')) {
+            moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
+            moveiUrl = moveiUrl.split('?').join(`?with_genres=${geners}&`)
+        }else{
+            moveiUrl = moveiUrl.split('?').join(`?with_genres=${geners}&`)
+        }
+        movieData = await getMovie(moveiUrl, options)
+        results = movieData.results
+        removeCards([...movieWrap.children])
+        loopArr(results)
+    }
 })

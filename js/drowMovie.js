@@ -64,12 +64,18 @@ export function drowSearch(obj) {
     const p = document.createElement('p')
     searchCard.classList.add('showCard')
     searchImage.setAttribute('src', 'https://image.tmdb.org/t/p/original' + obj.poster_path)
+    searchImage.dataset.id = obj.id
+    searchImage.addEventListener('click', (event) => {
+        let currentId = event.target.dataset.id
+        window.open(`../about/about.html#${currentId}`, '_blank')
+    })
     p.textContent = obj.title
     searchCard.append(searchImage, p)
     showSearch.append(searchCard)
     document.body.style.overflowY = 'hidden'
     return searchCard
 }
+
 export function drowRightMenu(obj) {
     const getRightMenu = document.getElementById('rightMenu')
     const ul = document.createElement('ul')
@@ -80,15 +86,5 @@ export function drowRightMenu(obj) {
     ul.append(li)
     getRightMenu.append(ul)
     document.body.style.overflowY = 'hidden'
-    li.addEventListener('click', (event) => {
-        removeCards([...movieWrap.children])
-        results.forEach(e => {
-            e.genre_ids.forEach(id => {
-                if (+event.target.dataset.id === id) {
-                    movieWrap.append(drowMovie(e))
-                }
-            })
-        })
-    })
     return getRightMenu
 }
