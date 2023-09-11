@@ -361,6 +361,7 @@ overflow-x: hidden;
     .searchDiv{
         width: 80%;
     }
+    
 }
 @media screen and (max-width: 768px){
         .movieWrap{

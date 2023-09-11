@@ -21,9 +21,9 @@ const burgerBtn = document.getElementById('burger')
 const arrowUp = document.getElementById('arrowUp')
 const left = document.getElementById('left')
 const right = document.getElementById('right')
+const rightMenuBar = document.querySelector('.rightMenu')
 
 let geners = false
-
 
 let moveiUrl = 'https://api.themoviedb.org/3/discover/movie?page=1'
 let movieData = await getMovie(moveiUrl, options)
@@ -44,7 +44,7 @@ movieWrap.addEventListener('click', (event) => {
         drowInfo(cardMovie, showInfo)
         arrowUp.classList.remove('arrowUpActive')
     }
-})
+})  
 blackBack.addEventListener('click', () => {
     showInfo.style.transform = 'translateY(-3000px)'
     blackBack.style.display = 'none'
@@ -91,8 +91,6 @@ right.addEventListener('click', async () => {
     removeCards([...movieWrap.children])
     loopArr(results)
     scrollLog()
-
-
 })
 
 left.addEventListener('click', async () => {
@@ -125,7 +123,6 @@ icon.addEventListener('click', async () => {
     loopArr(results)
 })
 
-const rightMenuBar = document.querySelector('.rightMenu')
 
 rightMenuBar.addEventListener('click', async (e) => {
     if (e.target.localName === 'li') {
