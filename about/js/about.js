@@ -67,7 +67,7 @@ function drowPerson(obj) {
     return personInfo
 }
 console.log(persons)
-persons.forEach(e => {
+persons.forEach(e => { 
     rightSideCard.append(drowPerson(e))
 })
 
