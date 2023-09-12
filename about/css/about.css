@@ -77,6 +77,29 @@ body{
     opacity: 60%;
 }
 
+
+.personInfo{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    overflow-y: hidden;
+    gap: 15px;
+}
+.personInfo img{
+    width: 100px;
+    border-radius: 100%;
+}
+
+.personInfo::-webkit-scrollbar{
+    background-color: gray;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.personInfo::-webkit-scrollbar-thumb{
+    background-color: yellowgreen;
+    border-radius: 5px;
+}
 @media screen and (max-width: 768px){
     .allChild{
         flex-direction: column;

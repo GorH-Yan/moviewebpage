@@ -13,11 +13,14 @@ const options = {
 const getMoive = async (URL, options) => fetch(URL, options).then(r => r.json())
 let movie = await getMoive(movieUrl, options)
 
+const getPerson = await getMoive(`https://api.themoviedb.org/3/movie/${movieId}/credits`, options)
+let persons = getPerson.cast
 
+
+const rightSideCard = document.createElement('div')
 function drowInfo(obj) {
     pageTitle.textContent = obj.title
     const leftSideCard = document.createElement('div')
-    const rightSideCard = document.createElement('div')
     const allChild = document.createElement('div')
     const img = document.createElement('img')
     const h2 = document.createElement('h2')
@@ -49,6 +52,24 @@ function drowInfo(obj) {
     return allChild
 }
 pageInfo.append(drowInfo(movie))
+
+const personInfo = document.createElement('div')
+function drowPerson(obj) {
+    const currentPerson = document.createElement('div')
+    const personImg = document.createElement('img')
+    const personTitle = document.createElement('p')
+    personImg.setAttribute('src', 'https://image.tmdb.org/t/p/original' + obj.profile_path)
+    personTitle.textContent = obj.original_name
+    currentPerson.classList.add('currentPerson')
+    currentPerson.append(personImg, personTitle)
+    personInfo.append(currentPerson)
+    personInfo.classList.add('personInfo')
+    return personInfo
+}
+console.log(persons)
+persons.forEach(e => {
+    rightSideCard.append(drowPerson(e))
+})
 
 backIcon.addEventListener('click', () => {
     window.open(`./index.html`, '_self')

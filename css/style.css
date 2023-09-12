@@ -253,6 +253,9 @@ i:hover{
 .searchDiv{
     position: fixed;
     background-color: #052546;
+    background: #283c86;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45a247, #283c86);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45a247, #283c86);
     height: 80vh;
     width: 50%;
     left: 50%;
@@ -269,7 +272,7 @@ i:hover{
     width: 100%;
     display: flex;
     justify-content: start;
-    background-color: #231b43;
+    background: #283c86; 
 }
 
 .showCard img{
