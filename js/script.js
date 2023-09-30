@@ -44,7 +44,7 @@ movieWrap.addEventListener('click', (event) => {
         drowInfo(cardMovie, showInfo)
         arrowUp.classList.remove('arrowUpActive')
     }
-})  
+})
 blackBack.addEventListener('click', () => {
     showInfo.style.transform = 'translateY(-3000px)'
     blackBack.style.display = 'none'
@@ -140,6 +140,8 @@ rightMenuBar.addEventListener('click', async (e) => {
         movieData = await getMovie(moveiUrl, options)
         results = movieData.results
         removeCards([...movieWrap.children])
+        removeCards([...rightMenuBar.children])
         loopArr(results)
     }
+
 })

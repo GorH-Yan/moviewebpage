@@ -350,6 +350,11 @@ overflow-x: hidden;
     transform: rotateY(180deg);
 }
 
+.activeList{
+    color: yellowgreen;
+}
+
+
 
 @media screen and (max-width: 1024px) {
     .movieWrap{
